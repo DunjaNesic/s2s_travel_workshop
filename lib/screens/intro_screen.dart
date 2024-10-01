@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:s2s_travel_workshop/utils/global_colors.dart';
+import 'package:s2s_travel_workshop/widgets/global_button.dart';
 
 class Intro extends StatelessWidget {
   const Intro({super.key});
@@ -12,70 +14,59 @@ class Intro extends StatelessWidget {
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/background.jpeg'), 
+                image: AssetImage('assets/images/background.jpeg'),
                 fit: BoxFit.cover,
               ),
             ),
           ),
           Container(
-            color: Colors.black.withOpacity(0.5),
+            color: GlobalColors.black.withOpacity(0.3),
           ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text(
+                Text(
                   'Get ready for',
                   style: TextStyle(
-                    color: Colors.white,
-                    //nisam bas sig da je dobro ovako zakucati font, istrazi to malo
+                    color: GlobalColors.white,
+                    // nisam bas sig da je dobro ovako zakucati font, istrazi to malo
                     fontSize: 24,
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Text(
+                Text(
                   'New Adventures',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: GlobalColors.white,
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 16),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
                     'If you like to travel, then this is for you! Here you can explore the beauty of the world.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
+                      color: GlobalColors.white,
+                      fontSize: 15,
                     ),
                   ),
                 ),
-                const SizedBox(height: 24),
-                //umesto ovog dugmeta bismo mogle da napravimo custom widget dugme
-                //koje ce da prima args text_color i background_color
-                ElevatedButton(
+                const SizedBox(height: 40),
+                GlobalButton(
+                  text: "Let's Tour",
                   onPressed: () {
                     context.go('/home');
                   },
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-                    backgroundColor: Colors.white,
-                  ),
-                  child: const Text(
-                    "Let's Tour",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                    ),
-                  ),
+                  backgroundColor: GlobalColors.white,
+                  textColor: GlobalColors.darkGreen,
+                  width: 200,
                 ),
+                const SizedBox(height: 50),
               ],
             ),
           ),
