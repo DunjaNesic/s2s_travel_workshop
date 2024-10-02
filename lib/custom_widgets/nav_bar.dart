@@ -40,7 +40,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       context.go('/home');
         break;
       case 2:
-        context.go('/home');
+        context.go('/details');
         break;
       case 3:
         context.go('/');
