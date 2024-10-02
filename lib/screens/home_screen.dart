@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:s2s_travel_workshop/custom_widgets/global_card.dart';
 import 'package:s2s_travel_workshop/custom_widgets/nav_bar.dart';
+import 'package:s2s_travel_workshop/models/destination.dart';
+import 'package:s2s_travel_workshop/services/destination_service.dart';
+import 'package:s2s_travel_workshop/utils/api_handler.dart';
 import 'package:s2s_travel_workshop/utils/global_colors.dart';
 
 class Home extends StatefulWidget {
@@ -11,53 +14,28 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final List<Map<String, dynamic>> destinations = [
-    {
-      'title': 'Belgrade',
-      'image_url':
-          'https://plus.unsplash.com/premium_photo-1697729779919-991cc0b2a149?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      'title': 'Novi Sad',
-      'image_url':
-          'https://plus.unsplash.com/premium_photo-1697729779919-991cc0b2a149?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      'title': 'Niš',
-      'image_url':
-          'https://plus.unsplash.com/premium_photo-1697729779919-991cc0b2a149?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      'title': 'Tara',
-      'image_url':
-          'https://plus.unsplash.com/premium_photo-1697729779919-991cc0b2a149?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      'title': 'Tara',
-      'image_url':
-          'https://plus.unsplash.com/premium_photo-1697729779919-991cc0b2a149?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      'title': 'Tara',
-      'image_url':
-          'https://plus.unsplash.com/premium_photo-1697729779919-991cc0b2a149?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      'title': 'Tara',
-      'image_url':
-          'https://plus.unsplash.com/premium_photo-1697729779919-991cc0b2a149?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      'title': 'Tara',
-      'image_url':
-          'https://plus.unsplash.com/premium_photo-1697729779919-991cc0b2a149?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      'title': 'Tara',
-      'image_url':
-          'https://plus.unsplash.com/premium_photo-1697729779919-991cc0b2a149?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-  ];
+List<Destination> destinations = [];
+
+Future<void> fetchDestinationsFromApi() async {
+  BaseAPI baseAPI = BaseAPI();
+  DestinationService destinationService = DestinationService(api: BaseAPI.api, headers: baseAPI.headers);
+
+  try {
+    List<Destination> fetchedDestinations = await destinationService.fetchDestinations();
+    // print(fetchedDestinations);
+    setState(() {
+        destinations = fetchedDestinations; 
+      });
+  } catch (e) {
+    // print('Error fetchDestinationsFromApi in details_screen: $e');
+  }
+}
+
+ @override
+  void initState() {
+    super.initState();
+    fetchDestinationsFromApi();  
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,8 +62,8 @@ class _HomeState extends State<Home> {
               itemBuilder: (context, index) {
                 final destination = destinations[index];
                 return DestinationCard(
-                  title: destination['title'],
-                  imageUrl: destination['image_url'],
+                  title: destination.title,
+                  imageUrl: destination.thumbnail,
                 );
               },
             ),

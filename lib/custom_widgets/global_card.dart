@@ -32,7 +32,7 @@ class DestinationCard extends StatelessWidget {
                 imageUrl,
                 width: 130,
                 height: 100,
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
             Expanded(

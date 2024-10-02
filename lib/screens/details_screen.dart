@@ -136,7 +136,7 @@ class Details extends StatelessWidget {
                         ],
                       ),
                     ),
-                  GlobalButton(text: 'Book now!', onPressed: () => {},
+                  GlobalButton(text: 'Book now!', onPressed: ()=>{},
                   backgroundColor: GlobalColors.darkGreen,
                   textColor: GlobalColors.white,
                   width: 200)
