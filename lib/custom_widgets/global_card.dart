@@ -54,7 +54,7 @@ class DestinationCard extends StatelessWidget {
                       Icon(Icons.place, color: GlobalColors.darkGrey, size: 16),
                       const SizedBox(width: 4),
                       Text(
-                        'Serbia',
+                        'France',
                         style: TextStyle(
                           color: GlobalColors.darkGrey,
                           fontSize: 12,
