@@ -60,17 +60,17 @@ class _BottomNavBarState extends State<BottomNavBar> {
           color: _selectedIndex == 0 ? Colors.white : Colors.black,
         ),
         Icon(
-          Icons.fitness_center,
+          Icons.travel_explore,
           size: 30,
           color: _selectedIndex == 1 ? Colors.white : Colors.black,
         ),
         Icon(
-          Icons.class_,
+          Icons.forest,
           size: 30,
           color: _selectedIndex == 2 ? Colors.white : Colors.black,
         ),
         Icon(
-          Icons.person,
+          Icons.logout,
           size: 30,
           color: _selectedIndex == 3 ? Colors.white : Colors.black,
         ),
