@@ -9,6 +9,7 @@ class GlobalButton extends StatelessWidget {
   final double fontSize;
   final double borderRadius;
   final double width;
+  final EdgeInsetsGeometry padding;
 
   const GlobalButton({
     super.key,
@@ -19,6 +20,7 @@ class GlobalButton extends StatelessWidget {
     this.fontSize = 16,
     this.borderRadius = 30,
     required this.width,
+    this.padding = const EdgeInsets.symmetric(vertical: 15),
   });
 
   @override
@@ -32,7 +34,7 @@ class GlobalButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
           ),
-          padding: const EdgeInsets.symmetric(vertical: 15),
+          padding: padding,
         ),
         child: Text(
           text,

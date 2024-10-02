@@ -1,7 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:s2s_travel_workshop/utils/global_colors.dart';
-import 'package:s2s_travel_workshop/widgets/global_button.dart';
+import 'package:s2s_travel_workshop/custom_widgets/global_button.dart';
 
 class Intro extends StatelessWidget {
   const Intro({super.key});
@@ -23,40 +24,53 @@ class Intro extends StatelessWidget {
             color: GlobalColors.black.withOpacity(0.3),
           ),
           Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  'Get ready for',
-                  style: TextStyle(
-                    color: GlobalColors.white,
-                    // nisam bas sig da je dobro ovako zakucati font, istrazi to malo
-                    fontSize: 24,
+                //showing the usage of FittedBox
+                FittedBox(
+                fit: BoxFit.contain,
+                child: 
+                  Text(
+                    'Get ready for',
+                    style: TextStyle(
+                      color: GlobalColors.white,
+                      fontSize: 24,
                   ),
+                 ),
                 ),
-                const SizedBox(height: 8),
+                 FittedBox(
+                fit: BoxFit.contain,
+                child: 
                 Text(
                   'New Adventures',
-                  style: TextStyle(
-                    color: GlobalColors.white,
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
+                    style: TextStyle(
+                     color: GlobalColors.white,
+                     fontSize: 32,
+                     fontWeight: FontWeight.bold,
                   ),
                 ),
+              ),
                 const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
+                //showing how AutoSizeText is better than Text
+                AutoSizeText(
                     'If you like to travel, then this is for you! Here you can explore the beauty of the world.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: GlobalColors.white,
-                      fontSize: 15,
+                      fontSize: 15,                                        
                     ),
-                  ),
-                ),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,     
+                    minFontSize: 10,        
+                  ),            
                 const SizedBox(height: 40),
+                  FittedBox(
+                fit: BoxFit.contain,
+                child: 
                 GlobalButton(
                   text: "Let's Tour",
                   onPressed: () {
@@ -65,9 +79,10 @@ class Intro extends StatelessWidget {
                   backgroundColor: GlobalColors.white,
                   textColor: GlobalColors.darkGreen,
                   width: 200,
-                ),
-                const SizedBox(height: 50),
+                ),        
+                  ),      
               ],
+             ),
             ),
           ),
         ],
