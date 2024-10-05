@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:s2s_travel_workshop/custom_widgets/global_card.dart';
 import 'package:s2s_travel_workshop/custom_widgets/nav_bar.dart';
@@ -14,27 +15,29 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-List<Destination> destinations = [];
+  List<Destination> destinations = [];
 
-Future<void> fetchDestinationsFromApi() async {
-  BaseAPI baseAPI = BaseAPI();
-  DestinationService destinationService = DestinationService(api: BaseAPI.api, headers: baseAPI.headers);
+  Future<void> fetchDestinationsFromApi() async {
+    BaseAPI baseAPI = BaseAPI();
+    DestinationService destinationService =
+        DestinationService(api: BaseAPI.api, headers: baseAPI.headers);
 
-  try {
-    List<Destination> fetchedDestinations = await destinationService.fetchDestinations();
-    // print(fetchedDestinations);
-    setState(() {
-        destinations = fetchedDestinations; 
+    try {
+      List<Destination> fetchedDestinations =
+          await destinationService.fetchDestinations();
+      // print(fetchedDestinations);
+      setState(() {
+        destinations = fetchedDestinations;
       });
-  } catch (e) {
-    // print('Error fetchDestinationsFromApi in details_screen: $e');
+    } catch (e) {
+      // print('Error fetchDestinationsFromApi in details_screen: $e');
+    }
   }
-}
 
- @override
+  @override
   void initState() {
     super.initState();
-    fetchDestinationsFromApi();  
+    fetchDestinationsFromApi();
   }
 
   @override
@@ -46,13 +49,16 @@ Future<void> fetchDestinationsFromApi() async {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
+            AutoSizeText(
               'Explore the world!',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: GlobalColors.black,
               ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              minFontSize: 10,
             ),
             const SizedBox(height: 16),
             ListView.builder(

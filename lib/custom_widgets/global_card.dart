@@ -26,16 +26,21 @@ class DestinationCard extends StatelessWidget {
         padding: const EdgeInsets.all(14.0),
         child: Row(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10.0),
-              child: Image.network(
-                imageUrl,
-                width: 130,
-                height: 100,
-                fit: BoxFit.fill,
+            Flexible(
+              flex: 1,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image.network(
+                  imageUrl,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: 100,
+                ),
               ),
             ),
+            const SizedBox(width: 10),
             Expanded(
+              flex: 1,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
